@@ -12,7 +12,7 @@ interface WorkItem {
 const workItems: Ref<WorkItem[]> = ref([]);
 
 onMounted(async () => {
-    await axios.get('http://localhost:5119/api/WorkItem').then((res) => {
+    await axio.get('http://localhost:5119/api/WorkItem').then((res) => {
         workItems.value = res.data;
     });
 });
