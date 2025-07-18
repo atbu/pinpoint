@@ -53,11 +53,13 @@ const statusNumToDescriptor = (status: number) => {
         <div v-for="item in workItems" :key="item.id" class="card m-2" style="width: 18rem">
             <div class="card-body">
                 <h5 class="card-title fw-bold">{{ item.title }}</h5>
-                <p class="card-text flex flex-row">
-                    {{ item.description }}<br />
-                    {{ statusNumToDescriptor(item.status) }}<br />
+                <span class="badge text-bg-secondary">{{
+                    statusNumToDescriptor(item.status)
+                }}</span>
+                <span class="badge text-bg-primary ms-1">
                     {{ dateToReadableString(item.createdAt) }}
-                </p>
+                </span>
+                <p class="card-text mt-1">{{ item.description }}<br /></p>
             </div>
         </div>
     </div>
