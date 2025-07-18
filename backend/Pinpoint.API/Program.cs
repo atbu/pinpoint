@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Pinpoint.Data;
+using Pinpoint.Data.Utilities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+
+builder.Services.InjectDependencies();
 
 builder.Services.AddDbContextPool<Context>(opt =>
     opt.UseNpgsql(builder.Configuration.GetConnectionString("Pinpoint")));
