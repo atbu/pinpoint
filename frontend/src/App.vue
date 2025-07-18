@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, type Ref, ref } from 'vue';
-import axios from 'axios';
+import axios, { type AxiosResponse } from 'axios';
 
 interface WorkItem {
     id: string;
@@ -12,7 +12,7 @@ interface WorkItem {
 const workItems: Ref<WorkItem[]> = ref([]);
 
 onMounted(async () => {
-    await axios.get('http://localhost:5119/api/WorkItem').then((res) => {
+    await axios.get('http://localhost:5119/api/WorkItem').then((res: AxiosResponse) => {
         workItems.value = res.data;
     });
 });
