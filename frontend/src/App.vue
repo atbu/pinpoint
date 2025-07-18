@@ -6,6 +6,7 @@ interface WorkItem {
     id: string;
     title: string;
     description: string;
+    status: number;
     createdAt: string;
 }
 
@@ -28,6 +29,23 @@ const dateToReadableString = (dateStr: string) => {
 
     return `${day}/${month}/${year}`;
 };
+
+const statusNumToDescriptor = (status: number) => {
+    enum Status {
+        New = 'New',
+        Proposed = 'Proposed',
+        Active = 'Active',
+        InDevelopment = 'In Development',
+        Developed = 'Developed',
+        Review = 'Review',
+        InTest = 'In Test',
+        Tested = 'Tested',
+        Closed = 'Closed',
+    }
+
+    const statusArray = Object.values(Status);
+    return statusArray[status];
+};
 </script>
 
 <template>
@@ -35,8 +53,9 @@ const dateToReadableString = (dateStr: string) => {
         <div v-for="item in workItems" :key="item.id" class="card m-2" style="width: 18rem">
             <div class="card-body">
                 <h5 class="card-title fw-bold">{{ item.title }}</h5>
-                <p class="card-text">
-                    {{ item.description }}
+                <p class="card-text flex flex-row">
+                    {{ item.description }}<br />
+                    {{ statusNumToDescriptor(item.status) }}<br />
                     {{ dateToReadableString(item.createdAt) }}
                 </p>
             </div>

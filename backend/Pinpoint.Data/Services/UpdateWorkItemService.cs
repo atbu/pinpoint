@@ -22,6 +22,7 @@ public class UpdateWorkItemService : IUpdateWorkItemService
 
         workItem.Title = dto.Title;
         workItem.Description = dto.Description;
+        workItem.Status = dto.Status;
         
         _saveChangesHelper.SaveChanges();
 
